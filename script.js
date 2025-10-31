@@ -502,8 +502,20 @@ window.addEventListener('scroll', () => {
             // Enhanced parallax effect
             const hero = document.querySelector('.hero');
             if (hero && scrollY < window.innerHeight) {
+                const heroContent = hero.querySelector('.hero-content');
                 hero.style.transform = `translateY(${scrollY * 0.5}px)`;
-                hero.style.opacity = 1 - (scrollY / window.innerHeight) * 0.5;
+                
+                // Calculate opacity based on scroll position
+                const fadeStart = 0;
+                const fadeEnd = window.innerHeight * 0.8;
+                const opacity = scrollY < fadeStart ? 1 : 
+                               scrollY > fadeEnd ? 0 : 
+                               1 - ((scrollY - fadeStart) / (fadeEnd - fadeStart));
+                
+                if (heroContent) {
+                    heroContent.style.opacity = opacity;
+                    heroContent.style.transform = `translateY(${scrollY * 0.3}px)`;
+                }
             }
 
             ticking = false;

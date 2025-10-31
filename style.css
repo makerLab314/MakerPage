@@ -45,6 +45,7 @@ body {
     transition: transform 0.15s ease, background 0.15s ease;
     box-shadow: 0 0 20px var(--glow-color), 0 0 40px var(--glow-color);
     mix-blend-mode: screen;
+    transform: translate(-50%, -50%);
 }
 
 .custom-cursor.hover {
@@ -63,6 +64,7 @@ body {
     box-shadow: 0 0 10px var(--primary-color);
     transition: transform 0.1s ease;
     mix-blend-mode: screen;
+    transform: translate(-50%, -50%);
 }
 
 /* Scroll Progress Bar */
@@ -121,11 +123,11 @@ body {
 /* GitHub Badge */
 .github-badge {
     position: fixed;
-    top: 80px;
-    right: 20px;
+    top: 90px;
+    right: 30px;
     z-index: 999;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    padding: 0.5rem 1.5rem;
+    padding: 0.7rem 1.5rem;
     border-radius: 25px;
     text-decoration: none;
     color: white;
@@ -253,6 +255,7 @@ nav .container {
 /* Hero Section */
 .hero {
     min-height: 100vh;
+    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -260,6 +263,8 @@ nav .container {
     padding: 8rem 2rem 4rem;
     position: relative;
     overflow: hidden;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
 }
 
 .hero-content {
@@ -553,10 +558,12 @@ section {
 }
 
 .equipment-image {
-    width: 150px;
+    width: 100%;
+    max-width: 150px;
     height: 150px;
     margin: 0 auto 1.5rem;
     display: block;
+    object-fit: contain;
     animation: wobble 3s ease-in-out infinite;
 }
 
@@ -983,6 +990,10 @@ model-viewer {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
     margin: 4rem 0;
+    position: relative;
+    z-index: 10;
+    background: var(--bg-darker);
+    padding: 2rem 0;
 }
 
 .stat-box {
@@ -1138,10 +1149,16 @@ footer p {
     }
 
     .github-badge {
-        top: 70px;
-        right: 10px;
-        padding: 0.4rem 1rem;
-        font-size: 0.9rem;
+        top: 80px;
+        right: 15px;
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        gap: 0.4rem;
+    }
+    
+    .badge-icon {
+        width: 20px;
+        height: 20px;
     }
 
     .modal-content {
