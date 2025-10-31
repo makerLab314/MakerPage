@@ -1,0 +1,44 @@
+[
+    {
+        "titel": "Autonomer Roboter",
+        "emoji": "🤖",
+        "beschreibung": "Ein selbstfahrender Roboter mit Arduino-Steuerung, Ultraschall-Sensoren und KI-basierter Hinderniserkennung.",
+        "detailbeschreibung": "Dieses Projekt kombiniert Hardware und Software zu einem vollständig autonomen Roboter. Er nutzt Ultraschall-Sensoren zur Abstandsmessung, einen Arduino als Steuereinheit und implementiert einfache KI-Algorithmen zur Hinderniserkennung und Navigation. Der Roboter kann selbstständig Hindernisse erkennen, ihnen ausweichen und seinen Weg durch einen Raum finden.",
+        "technologien": ["Arduino", "C++", "Sensoren", "KI"]
+    },
+    {
+        "titel": "Smart Home System",
+        "emoji": "🏠",
+        "beschreibung": "IoT-basiertes Smart Home mit Raspberry Pi, Temperatur- und Lichtsensoren sowie automatischer Steuerung.",
+        "detailbeschreibung": "Ein vollständiges Smart Home System, das auf einem Raspberry Pi läuft. Das System sammelt Daten von verschiedenen Sensoren (Temperatur, Luftfeuchtigkeit, Licht) und steuert automatisch Geräte wie Lampen, Heizung und Jalousien. Über eine Web-App kann das System auch manuell gesteuert und überwacht werden.",
+        "technologien": ["Raspberry Pi", "Python", "IoT", "MQTT"]
+    },
+    {
+        "titel": "Retro Gaming Console",
+        "emoji": "🎮",
+        "beschreibung": "Selbstgebaute Gaming-Konsole mit 3D-gedrucktem Gehäuse und Raspberry Pi als Herzstück.",
+        "detailbeschreibung": "Eine komplett selbstgebaute Retro-Gaming-Konsole. Das Gehäuse wurde in Fusion 360 designt und auf unserem 3D-Drucker gefertigt. Im Inneren arbeitet ein Raspberry Pi mit RetroPie, der Tausende von Retro-Games spielen kann. Controller-Ports, USB-Anschlüsse und HDMI-Ausgang sind sauber in das Design integriert.",
+        "technologien": ["3D-Druck", "RetroPie", "Gaming", "CAD"]
+    },
+    {
+        "titel": "Automatisches Gewächshaus",
+        "emoji": "🌱",
+        "beschreibung": "Intelligentes Gewächshaus mit automatischer Bewässerung, Temperaturregelung und Datenlogging.",
+        "detailbeschreibung": "Ein vollautomatisches Gewächshaus-System für optimales Pflanzenwachstum. Sensoren überwachen kontinuierlich Bodenfeuchtigkeit, Temperatur und Lichtverhältnisse. Ein Arduino steuert automatisch die Bewässerung, Belüftung und optional auch LED-Wachstumslampen. Alle Daten werden geloggt und können über eine Web-Schnittstelle visualisiert werden.",
+        "technologien": ["Arduino", "Sensoren", "Automation", "Web-Dashboard"]
+    },
+    {
+        "titel": "MIDI Controller",
+        "emoji": "🎸",
+        "beschreibung": "Selbstgebauter MIDI-Controller für Musikproduktion mit 3D-gedruckten Tasten und LED-Feedback.",
+        "detailbeschreibung": "Ein vollständig anpassbarer MIDI-Controller für Musikproduktion. Mit 3D-gedruckten Tasten, Potentiometern und RGB-LEDs für visuelles Feedback. Der Controller kommuniziert über USB-MIDI mit DAWs wie Ableton Live oder FL Studio. Jede Taste kann individuell programmiert werden.",
+        "technologien": ["3D-Druck", "MIDI", "Musik", "Arduino"]
+    },
+    {
+        "titel": "Wetterstation",
+        "emoji": "📡",
+        "beschreibung": "Professionelle Wetterstation mit ESP32, verschiedenen Sensoren und Web-Dashboard zur Datenvisualisierung.",
+        "detailbeschreibung": "Eine hochpräzise Wetterstation mit professionellen Sensoren für Temperatur, Luftfeuchtigkeit, Luftdruck, Windgeschwindigkeit und Niederschlag. Der ESP32 sammelt die Daten und sendet sie an einen Web-Server. Ein interaktives Dashboard zeigt aktuelle Werte, Trends und historische Daten in schönen Diagrammen an.",
+        "technologien": ["ESP32", "Web-App", "Daten", "Sensoren"]
+    }
+]
