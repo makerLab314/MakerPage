@@ -1,8 +1,1032 @@
-creae website here...
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MakerLab Frankfurt | Freie Waldorfschule</title>
+    <meta name="description" content="MakerLab der Freien Waldorfschule Frankfurt - 3D-Druck, Elektronik, Programmierung & DIY">
+    <style>
+        :root {
+            --primary-color: #00d4ff;
+            --secondary-color: #ff006e;
+            --accent-color: #ffbe0b;
+            --bg-dark: #0a0e27;
+            --bg-darker: #050814;
+            --text-light: #ffffff;
+            --text-gray: #a0a0a0;
+            --card-bg: rgba(20, 25, 50, 0.8);
+            --glow-color: rgba(0, 212, 255, 0.5);
+        }
 
-Erstelle eine richtig gute, moderne, beeindruckende und immersive Web-App/Webseite/Homepage für das MakerLab der Freien Waldorfschule Frankfurt!
-Wir haben einen prusa MK3.9s, einen prusa MK4s mit MMU3, einen Elegoo Centauri carbon, einen Mr Beam dreamcut S einen snapmaker.... wi haben ganz viel elektronik kram usw. dann auch eine seite mit projekten. eine Seite mit web tool oder so von/für uns, eine über uns/mitglieder Seite USW, wenn die noch mehr einfällt, mach es. Cooles Design, Makerig.
-Wir sind nerds, Physik, Programmierung DIY und Elektronik, 3D Druck etc, alles ist dabei!
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-darker);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-MAKERLAB
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, var(--bg-darker) 0%, var(--bg-dark) 100%);
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 50px, rgba(0, 212, 255, 0.03) 50px, rgba(0, 212, 255, 0.03) 51px),
+                repeating-linear-gradient(-45deg, transparent, transparent 50px, rgba(255, 0, 110, 0.03) 50px, rgba(255, 0, 110, 0.03) 51px);
+            animation: bgScroll 60s linear infinite;
+        }
+
+        @keyframes bgScroll {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary-color);
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.2);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px var(--glow-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-color);
+            transition: all 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 20px var(--glow-color)); }
+            50% { filter: drop-shadow(0 0 40px var(--glow-color)); }
+        }
+
+        .hero-content h2 {
+            font-size: 1.8rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: var(--text-gray);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+            box-shadow: 0 5px 25px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(0, 212, 255, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: var(--bg-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 4rem;
+            font-size: 1.2rem;
+        }
+
+        /* Equipment Grid */
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .equipment-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .equipment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .equipment-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .equipment-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
+            border-color: var(--primary-color);
+        }
+
+        .equipment-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .equipment-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .equipment-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .equipment-tag {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--primary-color);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 0, 110, 0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(255, 0, 110, 0.3);
+            border-color: var(--secondary-color);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(255, 0, 110, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .project-content p {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: rgba(255, 0, 110, 0.1);
+            color: var(--secondary-color);
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 0, 110, 0.3);
+        }
+
+        /* Web Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 190, 11, 0.2);
+            transition: all 0.3s;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-8px) rotate(2deg);
+            box-shadow: 0 15px 40px rgba(255, 190, 11, 0.3);
+            border-color: var(--accent-color);
+        }
+
+        .tool-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .tool-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .tool-card p {
+            color: var(--text-gray);
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .team-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .team-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 3px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .team-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .team-role {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--primary-color);
+            padding: 0.2rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        /* Stats Section */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-darker);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 2px solid var(--primary-color);
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+            transform: scale(1.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-dark);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                border-top: 2px solid var(--primary-color);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content h2 {
+                font-size: 1.3rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .equipment-grid,
+            .projects-grid,
+            .tools-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-darker);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--secondary-color), var(--primary-color));
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">⚙️ MakerLab</div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#equipment">Equipment</a></li>
+                <li><a href="#projects">Projekte</a></li>
+                <li><a href="#tools">Web Tools</a></li>
+                <li><a href="#team">Team</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>🔧 MAKERLAB</h1>
+            <h2>Freie Waldorfschule Frankfurt</h2>
+            <p>Willkommen in unserer Werkstatt der Zukunft! Wir sind Nerds, Maker, Tüftler und Kreative. Von 3D-Druck über Elektronik bis zur Programmierung - hier wird Technologie zum Leben erweckt.</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">Unsere Projekte</a>
+                <a href="#equipment" class="btn btn-secondary">Equipment entdecken</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section>
+        <div class="stats-container">
+            <div class="stat-box fade-in">
+                <div class="stat-number">5+</div>
+                <div class="stat-label">3D-Drucker</div>
+            </div>
+            <div class="stat-box fade-in">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Projekte</div>
+            </div>
+            <div class="stat-box fade-in">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Kreativität</div>
+            </div>
+            <div class="stat-box fade-in">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Innovation</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipment Section -->
+    <section id="equipment">
+        <h2 class="section-title">🛠️ Unser Equipment</h2>
+        <p class="section-subtitle">Professionelle Maschinen für professionelle Ergebnisse</p>
+        
+        <div class="equipment-grid">
+            <div class="equipment-card fade-in">
+                <span class="equipment-icon">🖨️</span>
+                <h3>Prusa MK3.9s</h3>
+                <p>Zuverlässiger FDM 3D-Drucker mit herausragender Druckqualität. Perfekt für präzise Prototypen und mechanische Teile.</p>
+                <span class="equipment-tag">3D-Druck</span>
+            </div>
+
+            <div class="equipment-card fade-in">
+                <span class="equipment-icon">🎨</span>
+                <h3>Prusa MK4s + MMU3</h3>
+                <p>Multimaterial-Unit für mehrfarbige und multi-material Drucke. Bis zu 5 Filamente gleichzeitig!</p>
+                <span class="equipment-tag">Multi-Material</span>
+            </div>
+
+            <div class="equipment-card fade-in">
+                <span class="equipment-icon">⚡</span>
+                <h3>Elegoo Centauri Carbon</h3>
+                <p>Hochgeschwindigkeits 3D-Drucker mit Carbon-Fiber Verstärkung für schnelle und stabile Drucke.</p>
+                <span class="equipment-tag">High-Speed</span>
+            </div>
+
+            <div class="equipment-card fade-in">
+                <span class="equipment-icon">✂️</span>
+                <h3>Mr Beam Dreamcut S</h3>
+                <p>Präziser Laser-Cutter für Holz, Acryl, Leder und mehr. Gravieren und Schneiden mit höchster Präzision.</p>
+                <span class="equipment-tag">Laser</span>
+            </div>
+
+            <div class="equipment-card fade-in">
+                <span class="equipment-icon">🔄</span>
+                <h3>Snapmaker</h3>
+                <p>All-in-One: 3D-Drucker, CNC-Fräse und Laser-Gravur in einem Gerät. Vielseitigkeit pur!</p>
+                <span class="equipment-tag">3-in-1</span>
+            </div>
+
+            <div class="equipment-card fade-in">
+                <span class="equipment-icon">⚙️</span>
+                <h3>Elektronik-Werkstatt</h3>
+                <p>Arduino, Raspberry Pi, Lötstationen, Oszilloskope, Multimeter - alles für Elektronik-Projekte!</p>
+                <span class="equipment-tag">Electronics</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">🚀 Unsere Projekte</h2>
+        <p class="section-subtitle">Von der Idee zur Realität - hier entstehen Innovation</p>
+        
+        <div class="projects-grid">
+            <div class="project-card fade-in">
+                <div class="project-image">🤖</div>
+                <div class="project-content">
+                    <h3>Autonomer Roboter</h3>
+                    <p>Ein selbstfahrender Roboter mit Arduino-Steuerung, Ultraschall-Sensoren und KI-basierter Hinderniserkennung.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Arduino</span>
+                        <span class="tech-tag">C++</span>
+                        <span class="tech-tag">Sensoren</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-image">🏠</div>
+                <div class="project-content">
+                    <h3>Smart Home System</h3>
+                    <p>IoT-basiertes Smart Home mit Raspberry Pi, Temperatur- und Lichtsensoren sowie automatischer Steuerung.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Raspberry Pi</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">IoT</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-image">🎮</div>
+                <div class="project-content">
+                    <h3>Retro Gaming Console</h3>
+                    <p>Selbstgebaute Gaming-Konsole mit 3D-gedrucktem Gehäuse und Raspberry Pi als Herzstück.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">3D-Druck</span>
+                        <span class="tech-tag">RetroPie</span>
+                        <span class="tech-tag">Gaming</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-image">🌱</div>
+                <div class="project-content">
+                    <h3>Automatisches Gewächshaus</h3>
+                    <p>Intelligentes Gewächshaus mit automatischer Bewässerung, Temperaturregelung und Datenlogging.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Arduino</span>
+                        <span class="tech-tag">Sensoren</span>
+                        <span class="tech-tag">Automation</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-image">🎸</div>
+                <div class="project-content">
+                    <h3>MIDI Controller</h3>
+                    <p>Selbstgebauter MIDI-Controller für Musikproduktion mit 3D-gedruckten Tasten und LED-Feedback.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">3D-Druck</span>
+                        <span class="tech-tag">MIDI</span>
+                        <span class="tech-tag">Musik</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-image">📡</div>
+                <div class="project-content">
+                    <h3>Wetterstation</h3>
+                    <p>Professionelle Wetterstation mit ESP32, verschiedenen Sensoren und Web-Dashboard zur Datenvisualisierung.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">ESP32</span>
+                        <span class="tech-tag">Web-App</span>
+                        <span class="tech-tag">Daten</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Web Tools Section -->
+    <section id="tools">
+        <h2 class="section-title">🔧 Web Tools</h2>
+        <p class="section-subtitle">Nützliche Tools von uns für euch</p>
+        
+        <div class="tools-grid">
+            <div class="tool-card fade-in" onclick="alert('Coming Soon: 3D Model Viewer!')">
+                <span class="tool-icon">📐</span>
+                <h3>3D Model Viewer</h3>
+                <p>STL/OBJ Dateien direkt im Browser anzeigen und analysieren</p>
+            </div>
+
+            <div class="tool-card fade-in" onclick="alert('Coming Soon: G-Code Analyzer!')">
+                <span class="tool-icon">📊</span>
+                <h3>G-Code Analyzer</h3>
+                <p>G-Code Dateien analysieren und Druckzeit berechnen</p>
+            </div>
+
+            <div class="tool-card fade-in" onclick="alert('Coming Soon: Resistor Calculator!')">
+                <span class="tool-icon">🔌</span>
+                <h3>Resistor Calculator</h3>
+                <p>Widerstands-Farbcode schnell und einfach berechnen</p>
+            </div>
+
+            <div class="tool-card fade-in" onclick="alert('Coming Soon: LED Calculator!')">
+                <span class="tool-icon">💡</span>
+                <h3>LED Calculator</h3>
+                <p>Vorwiderstände für LEDs berechnen</p>
+            </div>
+
+            <div class="tool-card fade-in" onclick="alert('Coming Soon: Material Database!')">
+                <span class="tool-icon">📚</span>
+                <h3>Material Database</h3>
+                <p>Datenbank mit Druckeinstellungen für verschiedene Filamente</p>
+            </div>
+
+            <div class="tool-card fade-in" onclick="alert('Coming Soon: Project Planner!')">
+                <span class="tool-icon">📝</span>
+                <h3>Project Planner</h3>
+                <p>Projekte planen, dokumentieren und teilen</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team">
+        <h2 class="section-title">👥 Unser Team</h2>
+        <p class="section-subtitle">Die kreativen Köpfe hinter dem MakerLab</p>
+        
+        <div class="team-grid">
+            <div class="team-card fade-in">
+                <div class="team-avatar">🧑‍🔬</div>
+                <h3>Die Tüftler</h3>
+                <p class="team-role">Hardware & Elektronik</p>
+                <div class="team-skills">
+                    <span class="skill-tag">Arduino</span>
+                    <span class="skill-tag">Raspberry Pi</span>
+                    <span class="skill-tag">Löten</span>
+                </div>
+            </div>
+
+            <div class="team-card fade-in">
+                <div class="team-avatar">👨‍💻</div>
+                <h3>Die Programmierer</h3>
+                <p class="team-role">Software & Web</p>
+                <div class="team-skills">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">C++</span>
+                </div>
+            </div>
+
+            <div class="team-card fade-in">
+                <div class="team-avatar">🎨</div>
+                <h3>Die Designer</h3>
+                <p class="team-role">3D-Modellierung & Design</p>
+                <div class="team-skills">
+                    <span class="skill-tag">Fusion 360</span>
+                    <span class="skill-tag">Blender</span>
+                    <span class="skill-tag">CAD</span>
+                </div>
+            </div>
+
+            <div class="team-card fade-in">
+                <div class="team-avatar">⚙️</div>
+                <h3>Die Mechaniker</h3>
+                <p class="team-role">Mechanik & Konstruktion</p>
+                <div class="team-skills">
+                    <span class="skill-tag">3D-Druck</span>
+                    <span class="skill-tag">CNC</span>
+                    <span class="skill-tag">Laser</span>
+                </div>
+            </div>
+
+            <div class="team-card fade-in">
+                <div class="team-avatar">🔬</div>
+                <h3>Die Physiker</h3>
+                <p class="team-role">Theorie & Experimente</p>
+                <div class="team-skills">
+                    <span class="skill-tag">Physik</span>
+                    <span class="skill-tag">Mathe</span>
+                    <span class="skill-tag">Forschung</span>
+                </div>
+            </div>
+
+            <div class="team-card fade-in">
+                <div class="team-avatar">🚀</div>
+                <h3>Die Innovatoren</h3>
+                <p class="team-role">Neue Ideen & Projekte</p>
+                <div class="team-skills">
+                    <span class="skill-tag">Innovation</span>
+                    <span class="skill-tag">Kreativität</span>
+                    <span class="skill-tag">DIY</span>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 4rem; padding: 2rem; background: var(--card-bg); border-radius: 20px; border: 1px solid rgba(0, 212, 255, 0.2);">
+            <h3 style="color: var(--primary-color); font-size: 2rem; margin-bottom: 1rem;">Werde Teil unseres Teams!</h3>
+            <p style="color: var(--text-gray); font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem;">
+                Du interessierst dich für Technik, Programmierung, 3D-Druck oder Elektronik? 
+                Dann bist du bei uns genau richtig! Wir treffen uns regelmäßig und arbeiten an spannenden Projekten.
+            </p>
+            <a href="mailto:makerlab@waldorfschule-frankfurt.de" class="btn btn-primary">Kontakt aufnehmen</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 MakerLab - Freie Waldorfschule Frankfurt</p>
+        <p>Wo Ideen zu Realität werden 🚀</p>
+        <div class="social-links">
+            <a href="#" title="GitHub">💻</a>
+            <a href="#" title="Instagram">📸</a>
+            <a href="#" title="YouTube">🎥</a>
+            <a href="mailto:makerlab@waldorfschule-frankfurt.de" title="Email">📧</a>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with fade-in class
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollY = window.pageYOffset;
+
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 100;
+                const sectionId = section.getAttribute('id');
+                const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
+
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    navLink?.classList.add('active');
+                } else {
+                    navLink?.classList.remove('active');
+                }
+            });
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Console easter egg for nerds
+        console.log('%c🔧 MakerLab Frankfurt 🔧', 'font-size: 24px; color: #00d4ff; font-weight: bold;');
+        console.log('%cWillkommen, fellow Maker! 👋', 'font-size: 16px; color: #ff006e;');
+        console.log('%cInteressiert an unserem Code? Schau dir unser GitHub an!', 'font-size: 14px; color: #ffbe0b;');
+        console.log('%c// TODO: Build something awesome! 🚀', 'font-size: 12px; color: #a0a0a0; font-style: italic;');
+    </script>
+</body>
+</html>
