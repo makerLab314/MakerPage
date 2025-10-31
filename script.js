@@ -12,8 +12,10 @@ async function loadProjects() {
         const projectsGrid = document.getElementById('projects-grid');
         
         projectsGrid.innerHTML = projects.map(project => `
-            <div class="project-card fade-in" data-project='${JSON.stringify(project)}'>
-                <div class="project-image">${project.emoji}</div>
+            <div class="project-card fade-in glass-card" data-project='${JSON.stringify(project)}'>
+                <div class="project-image">
+                    <img src="${project.image}" alt="${project.titel}" class="project-img">
+                </div>
                 <div class="project-content">
                     <h3>${project.titel}</h3>
                     <p>${project.beschreibung}</p>
@@ -45,7 +47,9 @@ function openProjectModal(project) {
     const modalContent = document.getElementById('modalProjectContent');
     
     modalContent.innerHTML = `
-        <div class="modal-emoji">${project.emoji}</div>
+        <div class="modal-image">
+            <img src="${project.image}" alt="${project.titel}" class="modal-project-img">
+        </div>
         <h2>${project.titel}</h2>
         <p>${project.detailbeschreibung || project.beschreibung}</p>
         <div class="project-tech">

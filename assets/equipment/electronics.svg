@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="Electronics workstation illustration">
+  <title>Electronics Workstation</title>
+  <defs>
+    <linearGradient id="electronicsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffbe0b;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Circuit board -->
+  <rect x="40" y="60" width="120" height="80" fill="#0a0e27" opacity="0.8" rx="5"/>
+  <!-- Circuits/traces -->
+  <path d="M 50 80 L 80 80 L 80 100 L 110 100" stroke="#00d4ff" stroke-width="3" fill="none" opacity="0.8"/>
+  <path d="M 50 110 L 90 110 L 90 130 L 120 130" stroke="#ff006e" stroke-width="3" fill="none" opacity="0.8"/>
+  <path d="M 110 100 L 140 100 L 140 120" stroke="#ffbe0b" stroke-width="3" fill="none" opacity="0.8"/>
+  <!-- Components -->
+  <circle cx="80" cy="80" r="6" fill="#00d4ff" opacity="0.9"/>
+  <circle cx="110" cy="100" r="6" fill="#ff006e" opacity="0.9"/>
+  <circle cx="90" cy="110" r="6" fill="#ffbe0b" opacity="0.9"/>
+  <rect x="135" y="115" width="10" height="10" fill="#00d4ff" opacity="0.9" rx="1"/>
+  <!-- Chip -->
+  <rect x="95" y="65" width="30" height="20" fill="url(#electronicsGrad)" opacity="0.9" rx="2"/>
+  <!-- Chip pins -->
+  <line x1="95" y1="68" x2="90" y2="68" stroke="#00d4ff" stroke-width="1"/>
+  <line x1="95" y1="72" x2="90" y2="72" stroke="#00d4ff" stroke-width="1"/>
+  <line x1="95" y1="76" x2="90" y2="76" stroke="#00d4ff" stroke-width="1"/>
+  <line x1="125" y1="68" x2="130" y2="68" stroke="#00d4ff" stroke-width="1"/>
+  <line x1="125" y1="72" x2="130" y2="72" stroke="#00d4ff" stroke-width="1"/>
+  <line x1="125" y1="76" x2="130" y2="76" stroke="#00d4ff" stroke-width="1"/>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="Clara - Electronics Expert avatar">
+  <title>Clara Avatar</title>
+  <defs>
+    <linearGradient id="avatarGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffbe0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="90" fill="url(#avatarGrad3)" opacity="0.3"/>
+  <!-- Head -->
+  <circle cx="100" cy="80" r="30" fill="url(#avatarGrad3)" opacity="0.8"/>
+  <!-- Body -->
+  <ellipse cx="100" cy="145" rx="45" ry="50" fill="url(#avatarGrad3)" opacity="0.8"/>
+  <!-- Lightning bolt overlay -->
+  <path d="M 95 65 L 92 78 L 98 78 L 93 90 L 103 75 L 97 75 L 100 65 Z" fill="#ff006e" opacity="0.9"/>
+</svg>

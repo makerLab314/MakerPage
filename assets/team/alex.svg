@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="Alex - Hardware Specialist avatar">
+  <title>Alex Avatar</title>
+  <defs>
+    <linearGradient id="avatarGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff006e;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="90" fill="url(#avatarGrad1)" opacity="0.3"/>
+  <!-- Head -->
+  <circle cx="100" cy="80" r="30" fill="url(#avatarGrad1)" opacity="0.8"/>
+  <!-- Body -->
+  <ellipse cx="100" cy="145" rx="45" ry="50" fill="url(#avatarGrad1)" opacity="0.8"/>
+  <!-- Wrench tool overlay -->
+  <path d="M 85 75 L 90 70 L 95 75 L 90 80 Z" fill="#ffbe0b" opacity="0.9"/>
+  <rect x="87" y="75" width="6" height="15" fill="#ffbe0b" opacity="0.9"/>
+</svg>
