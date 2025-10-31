@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="250" viewBox="0 0 400 250">
+  <defs>
+    <linearGradient id="gamingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffbe0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff006e;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="400" height="250" fill="#0a0e27"/>
+  <!-- Console body -->
+  <rect x="100" y="80" width="200" height="90" fill="url(#gamingGrad)" opacity="0.8" rx="12"/>
+  <!-- Screen/Display area -->
+  <rect x="120" y="95" width="80" height="60" fill="#0a0e27" opacity="0.8" rx="5"/>
+  <!-- Controller ports -->
+  <rect x="215" y="105" width="25" height="15" fill="#00d4ff" opacity="0.6" rx="3"/>
+  <rect x="245" y="105" width="25" height="15" fill="#00d4ff" opacity="0.6" rx="3"/>
+  <!-- Power button -->
+  <circle cx="260" cy="95" r="6" fill="#00d4ff" opacity="0.9"/>
+  <!-- Disc slot -->
+  <rect x="215" y="135" width="60" height="8" fill="#0a0e27" opacity="0.7" rx="2"/>
+  <!-- Game controller -->
+  <ellipse cx="200" cy="195" rx="45" ry="25" fill="url(#gamingGrad)" opacity="0.7"/>
+  <!-- D-pad -->
+  <rect x="175" y="192" width="8" height="8" fill="#00d4ff" opacity="0.9" rx="1"/>
+  <!-- Buttons -->
+  <circle cx="220" cy="190" r="4" fill="#ff006e" opacity="0.9"/>
+  <circle cx="230" cy="190" r="4" fill="#ffbe0b" opacity="0.9"/>
+  <circle cx="220" cy="200" r="4" fill="#00d4ff" opacity="0.9"/>
+  <circle cx="230" cy="200" r="4" fill="#00d4ff" opacity="0.9"/>
+  <!-- Retro pixel effect -->
+  <rect x="130" y="105" width="8" height="8" fill="#00d4ff" opacity="0.6"/>
+  <rect x="145" y="105" width="8" height="8" fill="#ff006e" opacity="0.6"/>
+  <rect x="130" y="118" width="8" height="8" fill="#ffbe0b" opacity="0.6"/>
+  <rect x="145" y="118" width="8" height="8" fill="#00d4ff" opacity="0.6"/>
+</svg>

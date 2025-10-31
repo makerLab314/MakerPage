@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="250" viewBox="0 0 400 250">
+  <defs>
+    <linearGradient id="midiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff006e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffbe0b;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="400" height="250" fill="#0a0e27"/>
+  <!-- MIDI Controller base -->
+  <rect x="80" y="100" width="240" height="80" fill="url(#midiGrad)" opacity="0.7" rx="8"/>
+  <!-- Pads/Keys row 1 -->
+  <rect x="100" y="115" width="25" height="25" fill="#00d4ff" opacity="0.8" rx="3"/>
+  <rect x="135" y="115" width="25" height="25" fill="#ff006e" opacity="0.8" rx="3"/>
+  <rect x="170" y="115" width="25" height="25" fill="#ffbe0b" opacity="0.8" rx="3"/>
+  <rect x="205" y="115" width="25" height="25" fill="#00d4ff" opacity="0.8" rx="3"/>
+  <rect x="240" y="115" width="25" height="25" fill="#ff006e" opacity="0.8" rx="3"/>
+  <rect x="275" y="115" width="25" height="25" fill="#ffbe0b" opacity="0.8" rx="3"/>
+  <!-- Pads/Keys row 2 -->
+  <rect x="100" y="150" width="25" height="25" fill="#ffbe0b" opacity="0.7" rx="3"/>
+  <rect x="135" y="150" width="25" height="25" fill="#00d4ff" opacity="0.7" rx="3"/>
+  <rect x="170" y="150" width="25" height="25" fill="#ff006e" opacity="0.7" rx="3"/>
+  <rect x="205" y="150" width="25" height="25" fill="#ffbe0b" opacity="0.7" rx="3"/>
+  <rect x="240" y="150" width="25" height="25" fill="#00d4ff" opacity="0.7" rx="3"/>
+  <rect x="275" y="150" width="25" height="25" fill="#ff006e" opacity="0.7" rx="3"/>
+  <!-- Knobs/Potentiometers -->
+  <circle cx="112" cy="195" r="8" fill="#0a0e27" opacity="0.7"/>
+  <circle cx="147" cy="195" r="8" fill="#0a0e27" opacity="0.7"/>
+  <circle cx="182" cy="195" r="8" fill="#0a0e27" opacity="0.7"/>
+  <line x1="112" y1="195" x2="115" y2="188" stroke="#00d4ff" stroke-width="2"/>
+  <line x1="147" y1="195" x2="150" y2="188" stroke="#ff006e" stroke-width="2"/>
+  <line x1="182" y1="195" x2="185" y2="188" stroke="#ffbe0b" stroke-width="2"/>
+  <!-- Music notes -->
+  <text x="220" y="200" fill="#00d4ff" opacity="0.6" font-size="30">♪</text>
+  <text x="250" y="195" fill="#ff006e" opacity="0.6" font-size="25">♫</text>
+  <text x="280" y="200" fill="#ffbe0b" opacity="0.6" font-size="30">♪</text>
+</svg>
