@@ -1527,6 +1527,30 @@ img {
     transform: scale(0.95);
 }
 
+/* Focus states for accessibility */
+a:focus, button:focus, .btn:focus, .project-card:focus,
+.tool-card:focus, .equipment-card:focus, .news-card:focus, .team-card:focus {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 3px;
+}
+
+/* Skip to content link for accessibility */
+.skip-to-content {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--primary-color);
+    color: var(--bg-dark);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    z-index: 10001;
+    font-weight: 600;
+}
+
+.skip-to-content:focus {
+    top: 0;
+}
+
 /* Pulse animation for call-to-action */
 .btn-primary {
     animation: pulse-glow 2s ease-in-out infinite;
@@ -1538,5 +1562,24 @@ img {
     }
     50% {
         box-shadow: 0 8px 35px rgba(0, 184, 212, 0.7);
+    }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .custom-cursor,
+    .cursor-trail,
+    .matrix-mode,
+    .confetti {
+        display: none !important;
     }
 }

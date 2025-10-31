@@ -13,14 +13,17 @@
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
 </head>
 <body>
+    <!-- Skip to content for accessibility -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+    
     <!-- Scroll Progress Bar -->
-    <div class="scroll-progress"></div>
+    <div class="scroll-progress" role="progressbar" aria-label="Page scroll progress"></div>
     
     <!-- Custom Cursor -->
-    <div class="custom-cursor"></div>
-    <div class="cursor-trail"></div>
+    <div class="custom-cursor" aria-hidden="true"></div>
+    <div class="cursor-trail" aria-hidden="true"></div>
     
-    <div class="bg-animation"></div>
+    <div class="bg-animation" aria-hidden="true"></div>
 
     <!-- GitHub Badge -->
     <a href="https://github.com/makerLab314/MakerPage" target="_blank" class="github-badge">
@@ -53,11 +56,11 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <video class="hero-video" autoplay muted loop playsinline>
+        <video class="hero-video" autoplay muted loop playsinline aria-hidden="true">
             <source src="assets/hero_video.mp4" type="video/mp4">
         </video>
-        <div class="hero-content">
-            <h1><img src="assets/icons/logo.svg" alt="" class="hero-logo"> MAKERLAB</h1>
+        <div class="hero-content" id="main-content">
+            <h1><img src="assets/icons/logo.svg" alt="" class="hero-logo" aria-hidden="true"> MAKERLAB</h1>
             <h2>Freie Waldorfschule Frankfurt</h2>
             <p>Willkommen in unserer Werkstatt der Zukunft! Wir sind Nerds, Maker, Tüftler und Kreative. Von 3D-Druck über Elektronik bis zur Programmierung - hier wird Technologie zum Leben erweckt.</p>
             <div class="cta-buttons">
@@ -204,9 +207,9 @@
     </section>
 
     <!-- Project Modal -->
-    <div id="projectModal" class="modal">
+    <div id="projectModal" class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
+            <span class="close" onclick="closeModal()" role="button" aria-label="Close modal">&times;</span>
             <div id="modalProjectContent">
                 <!-- Project details will be loaded here -->
             </div>
@@ -363,18 +366,18 @@
     </footer>
 
     <!-- Lightbox Gallery -->
-    <div id="lightbox" class="lightbox">
-        <span class="lightbox-close">&times;</span>
+    <div id="lightbox" class="lightbox" role="dialog" aria-labelledby="lightbox-title" aria-modal="true">
+        <span class="lightbox-close" role="button" aria-label="Close gallery">&times;</span>
         <div class="lightbox-content">
-            <img id="lightbox-img" class="lightbox-image" src="" alt="">
-            <div class="lightbox-nav lightbox-prev">&#10094;</div>
-            <div class="lightbox-nav lightbox-next">&#10095;</div>
+            <img id="lightbox-img" class="lightbox-image" src="" alt="" aria-live="polite">
+            <button class="lightbox-nav lightbox-prev" aria-label="Previous image">&#10094;</button>
+            <button class="lightbox-nav lightbox-next" aria-label="Next image">&#10095;</button>
         </div>
-        <div id="lightbox-thumbnails" class="lightbox-thumbnails"></div>
+        <div id="lightbox-thumbnails" class="lightbox-thumbnails" role="list" aria-label="Image thumbnails"></div>
     </div>
 
     <!-- Matrix Mode Container -->
-    <div id="matrix-container" class="matrix-mode"></div>
+    <div id="matrix-container" class="matrix-mode" aria-hidden="true"></div>
 
     <script src="script.js"></script>
 </body>

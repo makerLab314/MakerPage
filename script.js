@@ -156,8 +156,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = lightbox.querySelector('.lightbox-next');
 
     closeBtn.addEventListener('click', closeLightbox);
-    prevBtn.addEventListener('click', prevImage);
-    nextBtn.addEventListener('click', nextImage);
+    prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevImage(); });
+    nextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextImage(); });
 
     // Close on outside click
     lightbox.addEventListener('click', (e) => {
