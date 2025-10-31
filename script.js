@@ -7,10 +7,11 @@ function toggleMenu() {
 // ============================================
 // CUSTOM CURSOR EFFECTS
 // ============================================
+const MOBILE_BREAKPOINT = 768;
 let cursorX = 0, cursorY = 0;
 let trailX = 0, trailY = 0;
 
-if (window.innerWidth > 768) {
+if (window.innerWidth > MOBILE_BREAKPOINT) {
     const cursor = document.querySelector('.custom-cursor');
     const trail = document.querySelector('.cursor-trail');
     
@@ -126,10 +127,19 @@ function updateLightboxImage() {
 
 function createThumbnails() {
     const container = document.getElementById('lightbox-thumbnails');
-    container.innerHTML = currentGalleryImages.map((src, index) => 
-        `<img src="${src}" class="lightbox-thumbnail ${index === currentImageIndex ? 'active' : ''}" 
-              onclick="currentImageIndex = ${index}; updateLightboxImage();" alt="Thumbnail ${index + 1}">`
-    ).join('');
+    container.innerHTML = ''; // Clear existing thumbnails
+    
+    currentGalleryImages.forEach((src, index) => {
+        const thumb = document.createElement('img');
+        thumb.src = src;
+        thumb.className = `lightbox-thumbnail ${index === currentImageIndex ? 'active' : ''}`;
+        thumb.alt = `Thumbnail ${index + 1}`;
+        thumb.addEventListener('click', () => {
+            currentImageIndex = index;
+            updateLightboxImage();
+        });
+        container.appendChild(thumb);
+    });
 }
 
 function updateActiveThumbnail() {
@@ -197,32 +207,69 @@ async function loadProjects() {
         const projects = await response.json();
         const projectsGrid = document.getElementById('projects-grid');
         
-        projectsGrid.innerHTML = projects.map(project => `
-            <div class="project-card fade-in glass-card" data-project='${JSON.stringify(project)}'>
-                <div class="project-image">
-                    <img src="${project.image}" alt="${project.titel}" class="project-img" loading="lazy">
-                </div>
-                <div class="project-content">
-                    <h3>${project.titel}</h3>
-                    <p>${project.beschreibung}</p>
-                    <div class="project-tech">
-                        ${project.technologien.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-                    </div>
-                </div>
-            </div>
-        `).join('');
+        // Clear existing content
+        projectsGrid.innerHTML = '';
         
-        // Add click handlers to open modal
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('click', function(e) {
+        projects.forEach(project => {
+            const card = document.createElement('div');
+            card.className = 'project-card fade-in glass-card';
+            card.setAttribute('role', 'button');
+            card.setAttribute('tabindex', '0');
+            
+            // Project image container
+            const imgContainer = document.createElement('div');
+            imgContainer.className = 'project-image';
+            const img = document.createElement('img');
+            img.src = project.image;
+            img.alt = project.titel;
+            img.className = 'project-img';
+            img.loading = 'lazy';
+            imgContainer.appendChild(img);
+            card.appendChild(imgContainer);
+            
+            // Project content
+            const content = document.createElement('div');
+            content.className = 'project-content';
+            
+            const title = document.createElement('h3');
+            title.textContent = project.titel;
+            content.appendChild(title);
+            
+            const desc = document.createElement('p');
+            desc.textContent = project.beschreibung;
+            content.appendChild(desc);
+            
+            const techDiv = document.createElement('div');
+            techDiv.className = 'project-tech';
+            project.technologien.forEach(tech => {
+                const tag = document.createElement('span');
+                tag.className = 'tech-tag';
+                tag.textContent = tech;
+                techDiv.appendChild(tag);
+            });
+            content.appendChild(techDiv);
+            
+            card.appendChild(content);
+            
+            // Add event listeners
+            card.addEventListener('click', (e) => {
                 createRipple(e);
-                const project = JSON.parse(this.getAttribute('data-project'));
                 openProjectModal(project);
             });
+            
+            // Keyboard support
+            card.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openProjectModal(project);
+                }
+            });
+            
+            projectsGrid.appendChild(card);
+            
+            // Observe for animations
+            observer.observe(card);
         });
-        
-        // Re-observe fade-in elements
-        document.querySelectorAll('.project-card').forEach(el => observer.observe(el));
     } catch (error) {
         console.error('Error loading projects:', error);
     }
@@ -233,19 +280,52 @@ function openProjectModal(project) {
     const modal = document.getElementById('projectModal');
     const modalContent = document.getElementById('modalProjectContent');
     
+    // Clear previous content
+    modalContent.innerHTML = '';
+    
     const hasGallery = project.images && project.images.length > 1;
     
-    modalContent.innerHTML = `
-        ${hasGallery ? `<button class="gallery-button" onclick='openLightbox(${JSON.stringify(project.images)})'>📸 Galerie öffnen</button>` : ''}
-        <div class="modal-image">
-            <img src="${project.image}" alt="${project.titel}" class="modal-project-img" loading="lazy">
-        </div>
-        <h2>${project.titel}</h2>
-        <p>${project.detailbeschreibung || project.beschreibung}</p>
-        <div class="project-tech">
-            ${project.technologien.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-        </div>
-    `;
+    // Create gallery button if applicable
+    if (hasGallery) {
+        const galleryBtn = document.createElement('button');
+        galleryBtn.className = 'gallery-button';
+        galleryBtn.textContent = '📸 Galerie öffnen';
+        galleryBtn.addEventListener('click', () => openLightbox(project.images));
+        modalContent.appendChild(galleryBtn);
+    }
+    
+    // Create image container
+    const imageDiv = document.createElement('div');
+    imageDiv.className = 'modal-image';
+    const img = document.createElement('img');
+    img.src = project.image;
+    img.alt = project.titel;
+    img.className = 'modal-project-img';
+    img.loading = 'lazy';
+    imageDiv.appendChild(img);
+    modalContent.appendChild(imageDiv);
+    
+    // Create title
+    const title = document.createElement('h2');
+    title.id = 'modal-title';
+    title.textContent = project.titel;
+    modalContent.appendChild(title);
+    
+    // Create description
+    const desc = document.createElement('p');
+    desc.textContent = project.detailbeschreibung || project.beschreibung;
+    modalContent.appendChild(desc);
+    
+    // Create tech tags
+    const techDiv = document.createElement('div');
+    techDiv.className = 'project-tech';
+    project.technologien.forEach(tech => {
+        const tag = document.createElement('span');
+        tag.className = 'tech-tag';
+        tag.textContent = tech;
+        techDiv.appendChild(tag);
+    });
+    modalContent.appendChild(techDiv);
     
     modal.style.display = 'block';
 }
@@ -272,16 +352,31 @@ async function loadNews() {
         const newsItems = await response.json();
         const newsGrid = document.getElementById('news-grid');
         
-        newsGrid.innerHTML = newsItems.map(item => `
-            <div class="news-card fade-in">
-                <div class="news-date">${formatDate(item.datum)}</div>
-                <h3>${item.titel}</h3>
-                <p>${item.inhalt}</p>
-            </div>
-        `).join('');
+        // Clear existing content
+        newsGrid.innerHTML = '';
         
-        // Re-observe fade-in elements
-        document.querySelectorAll('.news-card').forEach(el => observer.observe(el));
+        newsItems.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'news-card fade-in';
+            
+            const dateDiv = document.createElement('div');
+            dateDiv.className = 'news-date';
+            dateDiv.textContent = formatDate(item.datum);
+            card.appendChild(dateDiv);
+            
+            const title = document.createElement('h3');
+            title.textContent = item.titel;
+            card.appendChild(title);
+            
+            const content = document.createElement('p');
+            content.textContent = item.inhalt;
+            card.appendChild(content);
+            
+            newsGrid.appendChild(card);
+            
+            // Observe for animations
+            observer.observe(card);
+        });
     } catch (error) {
         console.error('Error loading news:', error);
     }
@@ -464,7 +559,10 @@ function createMatrixChar() {
     const container = document.getElementById('matrix-container');
     const char = document.createElement('div');
     char.className = 'matrix-char';
-    char.textContent = String.fromCharCode(0x30A0 + Math.random() * 96);
+    // Generate random Katakana characters (Unicode range 0x30A0-0x30FF)
+    const KATAKANA_START = 0x30A0;
+    const KATAKANA_RANGE = 96;
+    char.textContent = String.fromCharCode(KATAKANA_START + Math.random() * KATAKANA_RANGE);
     char.style.left = Math.random() * 100 + '%';
     char.style.animationDuration = (Math.random() * 3 + 2) + 's';
     container.appendChild(char);

@@ -24,7 +24,13 @@ body {
     color: var(--text-light);
     overflow-x: hidden;
     line-height: 1.6;
-    cursor: none; /* Hide default cursor for custom cursor effect */
+}
+
+/* Custom cursor only on desktop with fine pointer */
+@media (pointer: fine) and (min-width: 769px) {
+    body {
+        cursor: none;
+    }
 }
 
 /* Custom Cursor */
@@ -1570,9 +1576,8 @@ a:focus, button:focus, .btn:focus, .project-card:focus,
     *,
     *::before,
     *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+        animation: none !important;
+        transition: none !important;
         scroll-behavior: auto !important;
     }
     
