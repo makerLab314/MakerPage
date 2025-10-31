@@ -49,7 +49,7 @@ body {
 }
 
 .custom-cursor.hover {
-    transform: scale(1.5);
+    transform: translate(-50%, -50%) scale(1.5);
     background: rgba(0, 184, 212, 0.2);
 }
 
