@@ -122,6 +122,7 @@ function closeLightbox() {
 function updateLightboxImage() {
     const img = document.getElementById('lightbox-img');
     img.src = currentGalleryImages[currentImageIndex];
+    img.alt = `Gallery image ${currentImageIndex + 1} of ${currentGalleryImages.length}`;
     updateActiveThumbnail();
 }
 
@@ -562,7 +563,7 @@ function createMatrixChar() {
     // Generate random Katakana characters (Unicode range 0x30A0-0x30FF)
     const KATAKANA_START = 0x30A0;
     const KATAKANA_RANGE = 96;
-    char.textContent = String.fromCharCode(KATAKANA_START + Math.random() * KATAKANA_RANGE);
+    char.textContent = String.fromCharCode(KATAKANA_START + Math.floor(Math.random() * KATAKANA_RANGE));
     char.style.left = Math.random() * 100 + '%';
     char.style.animationDuration = (Math.random() * 3 + 2) + 's';
     container.appendChild(char);
