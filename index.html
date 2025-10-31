@@ -620,6 +620,29 @@
         ::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(180deg, var(--secondary-color), var(--primary-color));
         }
+
+        /* Notification animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -20px);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+            to {
+                opacity: 0;
+                transform: translate(-50%, -20px);
+            }
+        }
     </style>
 </head>
 <body>
@@ -732,7 +755,7 @@
     <!-- Projects Section -->
     <section id="projects">
         <h2 class="section-title">🚀 Unsere Projekte</h2>
-        <p class="section-subtitle">Von der Idee zur Realität - hier entstehen Innovation</p>
+        <p class="section-subtitle">Von der Idee zur Realität - hier entsteht Innovation</p>
         
         <div class="projects-grid">
             <div class="project-card fade-in">
@@ -821,37 +844,37 @@
         <p class="section-subtitle">Nützliche Tools von uns für euch</p>
         
         <div class="tools-grid">
-            <div class="tool-card fade-in" onclick="alert('Coming Soon: 3D Model Viewer!')">
+            <div class="tool-card fade-in" data-tool="3D Model Viewer">
                 <span class="tool-icon">📐</span>
                 <h3>3D Model Viewer</h3>
                 <p>STL/OBJ Dateien direkt im Browser anzeigen und analysieren</p>
             </div>
 
-            <div class="tool-card fade-in" onclick="alert('Coming Soon: G-Code Analyzer!')">
+            <div class="tool-card fade-in" data-tool="G-Code Analyzer">
                 <span class="tool-icon">📊</span>
                 <h3>G-Code Analyzer</h3>
                 <p>G-Code Dateien analysieren und Druckzeit berechnen</p>
             </div>
 
-            <div class="tool-card fade-in" onclick="alert('Coming Soon: Resistor Calculator!')">
+            <div class="tool-card fade-in" data-tool="Resistor Calculator">
                 <span class="tool-icon">🔌</span>
                 <h3>Resistor Calculator</h3>
                 <p>Widerstands-Farbcode schnell und einfach berechnen</p>
             </div>
 
-            <div class="tool-card fade-in" onclick="alert('Coming Soon: LED Calculator!')">
+            <div class="tool-card fade-in" data-tool="LED Calculator">
                 <span class="tool-icon">💡</span>
                 <h3>LED Calculator</h3>
                 <p>Vorwiderstände für LEDs berechnen</p>
             </div>
 
-            <div class="tool-card fade-in" onclick="alert('Coming Soon: Material Database!')">
+            <div class="tool-card fade-in" data-tool="Material Database">
                 <span class="tool-icon">📚</span>
                 <h3>Material Database</h3>
                 <p>Datenbank mit Druckeinstellungen für verschiedene Filamente</p>
             </div>
 
-            <div class="tool-card fade-in" onclick="alert('Coming Soon: Project Planner!')">
+            <div class="tool-card fade-in" data-tool="Project Planner">
                 <span class="tool-icon">📝</span>
                 <h3>Project Planner</h3>
                 <p>Projekte planen, dokumentieren und teilen</p>
@@ -994,31 +1017,66 @@
         // Observe all elements with fade-in class
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Active navigation highlighting
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section[id]');
-            const scrollY = window.pageYOffset;
-
-            sections.forEach(section => {
-                const sectionHeight = section.offsetHeight;
-                const sectionTop = section.offsetTop - 100;
-                const sectionId = section.getAttribute('id');
-                const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
-
-                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                    navLink?.classList.add('active');
-                } else {
-                    navLink?.classList.remove('active');
-                }
+        // Tool card click handlers
+        document.querySelectorAll('.tool-card[data-tool]').forEach(card => {
+            card.addEventListener('click', function() {
+                const toolName = this.getAttribute('data-tool');
+                // Create a simple notification instead of alert
+                const notification = document.createElement('div');
+                notification.textContent = `Coming Soon: ${toolName}!`;
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 100px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+                    color: white;
+                    padding: 1rem 2rem;
+                    border-radius: 50px;
+                    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5);
+                    z-index: 10000;
+                    font-weight: 600;
+                    animation: slideDown 0.3s ease;
+                `;
+                document.body.appendChild(notification);
+                setTimeout(() => {
+                    notification.style.animation = 'slideUp 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                }, 2000);
             });
         });
 
-        // Add parallax effect to hero section
+        // Active navigation highlighting and parallax with throttling
+        let ticking = false;
         window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const sections = document.querySelectorAll('section[id]');
+                    const scrollY = window.pageYOffset;
+
+                    // Active navigation highlighting
+                    sections.forEach(section => {
+                        const sectionHeight = section.offsetHeight;
+                        const sectionTop = section.offsetTop - 100;
+                        const sectionId = section.getAttribute('id');
+                        const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
+
+                        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                            navLink?.classList.add('active');
+                        } else {
+                            navLink?.classList.remove('active');
+                        }
+                    });
+
+                    // Parallax effect for hero section
+                    const hero = document.querySelector('.hero');
+                    if (hero) {
+                        hero.style.transform = `translateY(${scrollY * 0.5}px)`;
+                    }
+
+                    ticking = false;
+                });
+                ticking = true;
             }
         });
 
