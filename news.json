@@ -1,22 +1,17 @@
 [
     {
-        "datum": "2025-10-28",
+        "datum": "2025-05-26",
         "titel": "Neue Prusa MK4s mit MMU3 ist da! 🎉",
         "inhalt": "Unser neuester Zuwachs im MakerLab ist angekommen! Der Prusa MK4s mit Multi-Material-Unit ermöglicht uns jetzt mehrfarbige und multi-material Drucke. Wir können bis zu 5 verschiedene Filamente in einem einzigen Druck verwenden. Perfekt für komplexe Prototypen und kreative Projekte!"
     },
     {
-        "datum": "2025-10-15",
-        "titel": "MakerLab Workshop: Einführung in Arduino",
-        "inhalt": "Letzten Freitag fand unser erster Arduino-Workshop statt! 15 begeisterte Teilnehmer haben gelernt, wie man LEDs zum Blinken bringt, Sensoren ausliest und einfache Roboter steuert. Der nächste Workshop kommt bald - stay tuned!"
+        "datum": "2025-07-16",
+        "titel": "MakerLab Sommerworkshop: Einführung in Arduino",
+        "inhalt": "In der letzten Woche fand unser erster Arduinoroboterauto-Workshop statt! 12 Teilnehmer haben gelernt, wie man ein kleines Auto zum fahren bringt - autonom! Der nächste Workshop kommt bald - stay tuned!"
     },
     {
-        "datum": "2025-10-01",
-        "titel": "Erfolgreicher 3D-Druck Marathon",
-        "inhalt": "Beim gestrigen 3D-Druck Marathon haben wir über 50 Objekte für verschiedene Projekte gedruckt. Von Gehäusen für Raspberry Pi bis zu Ersatzteilen für Roboter - unsere Drucker liefen auf Hochtouren. Ein großes Dankeschön an alle Helfer!"
-    },
-    {
-        "datum": "2025-09-20",
-        "titel": "Maker Faire Frankfurt - Wir waren dabei!",
+        "datum": "2025-10-31",
+        "titel": "Formnext Frankfurt - Wir werden hingehen!!",
         "inhalt": "Das MakerLab war auf der Maker Faire Frankfurt vertreten! Wir haben unsere coolsten Projekte präsentiert und viele neue Kontakte in der Maker-Community geknüpft. Die Begeisterung der Besucher für unsere autonomen Roboter und Smart Home Projekte war überwältigend!"
     }
 ]
