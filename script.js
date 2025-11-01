@@ -499,22 +499,23 @@ window.addEventListener('scroll', () => {
                 }
             });
 
-            // Enhanced parallax effect
+            // Subtle parallax effect
             const hero = document.querySelector('.hero');
-            if (hero && scrollY < window.innerHeight) {
+            if (hero && scrollY < window.innerHeight * 1.5) {
                 const heroContent = hero.querySelector('.hero-content');
-                hero.style.transform = `translateY(${scrollY * 0.5}px)`;
+                // Reduced parallax movement for smoother experience
+                hero.style.transform = `translateY(${scrollY * 0.2}px)`;
                 
-                // Calculate opacity based on scroll position
-                const fadeStart = 0;
-                const fadeEnd = window.innerHeight * 0.8;
+                // Calculate opacity based on scroll position - fade out much later
+                const fadeStart = window.innerHeight * 0.5;
+                const fadeEnd = window.innerHeight * 1.2;
                 const opacity = scrollY < fadeStart ? 1 : 
                                scrollY > fadeEnd ? 0 : 
                                1 - ((scrollY - fadeStart) / (fadeEnd - fadeStart));
                 
                 if (heroContent) {
                     heroContent.style.opacity = opacity;
-                    heroContent.style.transform = `translateY(${scrollY * 0.3}px)`;
+                    heroContent.style.transform = `translateY(${scrollY * 0.1}px)`;
                 }
             }
 
